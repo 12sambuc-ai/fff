@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <title>Kaffefrågor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+        }
+        button {
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="question">Är du en lärare?</h1>
+
+    <div id="buttons">
+        <button onclick="answer('ja')">Ja</button>
+        <button onclick="answer('nej')">Nej</button>
+    </div>
+
+<script>
+    let step = 1;
+    const gevalia = "https://www.gevalia.se/";
+
+    function answer(val) {
+
+        // Fråga 1
+        if (step === 1) {
+            if (val === "nej") {
+                window.location.href = gevalia;
+            } else {
+                step = 2;
+                document.getElementById("question").innerText =
+                    "Har du råd med kaffe?";
+            }
+        }
+
+        // Fråga 2
+        else if (step === 2) {
+            step = 3;
+            document.getElementById("question").innerText =
+                "Har du råd med kaffe?";
+        }
+
+        // Fråga 3
+        else if (step === 3) {
+            if (val === "ja") {
+                window.location.href = gevalia;
+            } else {
+                step = 4;
+                document.getElementById("question").innerText =
+                    "Kan du sälja något för att köpa kaffe?";
+            }
+        }
+
+        // Fråga 4
+        else if (step === 4) {
+            if (val === "ja") {
+                window.location.href = gevalia;
+            } else {
+                document.getElementById("question").innerText =
+                    "Tig efter kaffe ☕";
+                document.getElementById("buttons").style.display = "none";
+                setTimeout(() => {
+                    window.location.href = gevalia;
+                }, 3000);
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
